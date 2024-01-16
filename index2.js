@@ -50,6 +50,7 @@ app.get("/api/write-modbus-register", (req, res) => {
 });
 
 // Dynamic Route for get api
+
 app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
     // Create Modus Client
     const client = new Modbus();
@@ -66,37 +67,42 @@ app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
     res.status(400).send("Invalid register address");
     return;
   }
+ 
 
   // Set the value
   const registerValue = 1;
 
-   // Connect to the Modbus server
-   client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
-    if (err) {
-      console.error("Error connecting to Modbus server:", err,registerAddress);
-      client.close();
-      res.status(500).send("Error connecting to Modbus server with register address");
-    } else {
-      console.log("Connected to Modbus server");
-
-      // Write a single register with the specified value
-      client.writeRegister(
-        registerAddress,
-        registerValue,
-        (writeErr, response) => {
-          if (writeErr) {
-            console.error("Error writing register:", writeErr);
-            res.status(500).send("Error writing Modbus register");
-          } else {
-            console.log("Write successful:", response);
-            res.status(200).send("Write successful");
+  // wait 10 second then execute function
+  setTimeout(()=>{
+    client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
+      if (err) {
+        console.error("Error connecting to Modbus server:", err,registerAddress);
+        client.close();
+        res.status(500).send("Error connecting to Modbus server with register address");
+      } else {
+        console.log("Connected to Modbus server");
+  
+        // Write a single register with the specified value
+        client.writeRegister(
+          registerAddress,
+          registerValue,
+          (writeErr, response) => {
+            if (writeErr) {
+              console.error("Error writing register:", writeErr);
+              res.status(500).send("Error writing Modbus register");
+            } else {
+              console.log("Write successful:", response);
+              res.status(200).send("Write successful");
+            }
+  
+            // Close the connection
+            client.close();
           }
-
-          // Close the connection
-          client.close();
-        }
-      );
-    }})
+        );
+      }})
+  }, 10 * 1000)
+   // Connect to the Modbus server
+  
 
 
 })
