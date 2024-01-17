@@ -1,19 +1,22 @@
 const express = require("express");
+const cors = require("cors");
 const Modbus = require("modbus-serial");
 const dotenv = require("dotenv");
 
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const port = process.env.PORT || 5100; // Use the configured port or default to 5100
+app.use(cors());
+const port = process.env.PORT || 5200; // Use the configured port or default to 5100
 
 app.get("/write-modbus-register", (req, res) => {
+  console.log("telah dipanggil lewat api");
   // Create a Modbus TCP client
   const client = new Modbus();
 
   // Define the Modbus server's IP address and port
-  const modbusServerIp = "192.168.137.27";
-  const modbusServerPort = 502; // Default Modbus TCP port
+  const modbusServerIp = "172.172.8.110";
+  const modbusServerPort = 8888; // Default Modbus TCP port
 
   // Set the register address and value
   const registerAddress = 10;
