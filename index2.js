@@ -51,29 +51,18 @@ app.get("/api/write-modbus-register", (req, res) => {
 
 // Dynamic Route for get api
 
-app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
+
     // Create Modus Client
     const client = new Modbus();
 
     //Define modbus Server IP 
     const modbusServerIp = process.env.MODBUS_SERVER_IP;
     const modbusServerPort = process.env.MODBUS_SERVER_PORT;
-
-
-    const registerAddress = parseInt(req.params.registerAddress);
-
-     // Validate if registerAddress is a number
-  if (isNaN(registerAddress)) {
-    res.status(400).send("Invalid register address");
-    return;
-  }
  
 
   // Set the value
   const registerValue = 1;
 
-  // wait 10 second then execute function
-  setTimeout(()=>{
     client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
       if (err) {
         console.error("Error connecting to Modbus server:", err,registerAddress);
@@ -82,6 +71,15 @@ app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
       } else {
         console.log("Connected to Modbus server");
   
+        app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
+          const registerAddress = parseInt(req.params.registerAddress);
+
+          // Validate if registerAddress is a number
+       if (isNaN(registerAddress)) {
+         res.status(400).send("Invalid register address");
+         return;
+       }
+      
         // Write a single register with the specified value
         client.writeRegister(
           registerAddress,
@@ -99,13 +97,15 @@ app.get("/api/write-modbus-register/:registerAddress", (req, res) =>{
             client.close();
           }
         );
+      })
+
+
+
+        
       }})
-  }, 10 * 1000)
-   // Connect to the Modbus server
-  
 
 
-})
+
 
 // for back value modbus
 app.get("/back-modbus-register", (req, res) => {
