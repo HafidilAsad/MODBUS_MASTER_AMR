@@ -126,7 +126,7 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
       );
     });
 
-    // untuk 30
+    // untuk 30 dan 29
     app.get("/write-modbus-register/30", (req, res) => {
       console.log("API MC 30 Telah dipanggil");
       console.log("API call MC 30 completed at:", new Date().toLocaleString('id-ID'));
@@ -147,7 +147,7 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
       );
     });
 
-    // untuk 34
+    // untuk 34 dan 33 
     app.get("/write-modbus-register/34", (req, res) => {
       console.log("API MC 34 Telah dipanggil");
       console.log("API call MC 34 completed at:", new Date().toLocaleString('id-ID'));
@@ -168,9 +168,7 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
       );
     });
 
-
-    // untuk 28
-
+    // untuk 28 dan 27
     app.get("/write-modbus-register/28", (req, res) => {
       console.log("API MC 28 Telah dipanggil");
       console.log("API call MC 28 completed at:", new Date().toLocaleString('id-ID'));
@@ -191,9 +189,9 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
       );
     });
 
-        // untuk 20
+        // untuk 20 dan 22
 
-        app.get("/write-modbus-register/20", (req, res) => {
+    app.get("/write-modbus-register/20", (req, res) => {
           console.log("API MC 20 Telah dipanggil");
           console.log("API call MC 20 completed at:", new Date().toLocaleString('id-ID'));
     
@@ -211,11 +209,10 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
               }            
             }
           );
-        });
+    });
 
-           // untuk 32
-
-           app.get("/write-modbus-register/32", (req, res) => {
+           // untuk 32 dan 31
+    app.get("/write-modbus-register/32", (req, res) => {
             console.log("API MC 32 Telah dipanggil");
             console.log("API call MC 32 completed at:", new Date().toLocaleString('id-ID'));
       
@@ -233,10 +230,10 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
                 }            
               }
             );
-          });
+    });
 
-            // untuk 24
-          app.get("/write-modbus-register/24", (req, res) => {
+            // untuk 24 dan 12
+    app.get("/write-modbus-register/24", (req, res) => {
             console.log("API MC 24 Telah dipanggil");
             console.log("API call MC 24 completed at:", new Date().toLocaleString('id-ID'));
       
@@ -256,8 +253,8 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
             );
           });
 
-          // untuk 40
-          app.get("/write-modbus-register/24", (req, res) => {
+          // untuk 40 dan 10
+    app.get("/write-modbus-register/24", (req, res) => {
             console.log("API MC 40 Telah dipanggil");
             console.log("API call MC 40 completed at:", new Date().toLocaleString('id-ID'));
       
@@ -275,9 +272,9 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
                 }            
               }
             );
-          });
+    });
           // untuk 54
-          app.get("/write-modbus-register/54", (req, res) => {
+    app.get("/write-modbus-register/54", (req, res) => {
             console.log("API MC 54 Telah dipanggil");
             console.log("API call MC 54 completed at:", new Date().toLocaleString('id-ID'));
       
