@@ -69,6 +69,8 @@ const registerValue2 = 1;
 const registerAddress28 = 13
 const registerValueBack = 0;
 
+const registerAddress34 = 10
+const registerAddress30 = 11
 const registerAddress28_B = 14
 const registerAddress32 = 15
 const registerAddress24 = 16
@@ -123,6 +125,49 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
         }
       );
     });
+
+    // untuk 30
+    app.get("/write-modbus-register/30", (req, res) => {
+      console.log("API MC 30 Telah dipanggil");
+      console.log("API call MC 30 completed at:", new Date().toLocaleString('id-ID'));
+
+      client.writeRegister(
+        registerAddress30,
+        registerValue,
+        (writeErr, response) => {
+          if (writeErr) {
+            console.error("Error writing register:", writeErr);
+            res.status(500).send("Error writing Modbus register");
+            process.exit(1)
+          } else {
+            console.log("Write successful:", response);
+            res.status(200).send("Write successful");
+          }            
+        }
+      );
+    });
+
+    // untuk 34
+    app.get("/write-modbus-register/34", (req, res) => {
+      console.log("API MC 34 Telah dipanggil");
+      console.log("API call MC 34 completed at:", new Date().toLocaleString('id-ID'));
+
+      client.writeRegister(
+        registerAddress34,
+        registerValue,
+        (writeErr, response) => {
+          if (writeErr) {
+            console.error("Error writing register:", writeErr);
+            res.status(500).send("Error writing Modbus register");
+            process.exit(1)
+          } else {
+            console.log("Write successful:", response);
+            res.status(200).send("Write successful");
+          }            
+        }
+      );
+    });
+
 
     // untuk 28
 
