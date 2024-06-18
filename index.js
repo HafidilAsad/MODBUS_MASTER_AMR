@@ -66,16 +66,21 @@ const registerValue = 1;
 const registerAddress2 = 11;
 const registerValue2 = 1;
 
-const registerAddress28 = 13
+const registerAddress20 = 13
 const registerValueBack = 0;
 
 const registerAddress34 = 10
 const registerAddress30 = 11
-const registerAddress28_B = 14
+const registerAddress28 = 14
 const registerAddress32 = 15
 const registerAddress24 = 16
 const registerAddress40 = 17
 const registerAddress54 = 18
+const registerAddress25 = 19
+const registerAddress45 = 56
+const registerAddress1 = 40
+const registerAddress5 = 24
+const registerAddress43 = 20
 
 // Connect to the Modbus server
 client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
@@ -198,7 +203,7 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
           console.log("API call MC 20 completed at:", new Date().toLocaleString('id-ID'));
     
           client.writeRegister(
-            registerAddress28_B,
+            registerAddress20,
             registerValue,
             (writeErr, response) => {
               if (writeErr) {
@@ -257,7 +262,7 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
           });
 
           // untuk 40
-          app.get("/write-modbus-register/24", (req, res) => {
+          app.get("/write-modbus-register/40", (req, res) => {
             console.log("API MC 40 Telah dipanggil");
             console.log("API call MC 40 completed at:", new Date().toLocaleString('id-ID'));
       
@@ -296,7 +301,107 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
               }
             );
           });
+            // untuk 25
+          app.get("/write-modbus-register/25", (req, res) => {
+              console.log("API MC 25 Telah dipanggil");
+              console.log("API call MC 25 completed at:", new Date().toLocaleString('id-ID'));
+        
+              client.writeRegister(
+                registerAddress25,
+                registerValue,
+                (writeErr, response) => {
+                  if (writeErr) {
+                    console.error("Error writing register:", writeErr);
+                    res.status(500).send("Error writing Modbus register");
+                    process.exit(1)
+                  } else {
+                    console.log("Write successful:", response);
+                    res.status(200).send("Write successful");
+                  }            
+                }
+              );
+          });
+          // untuk 45
+          app.get("/write-modbus-register/45", (req, res) => {
+            console.log("API MC 45 Telah dipanggil");
+            console.log("API call MC 45 completed at:", new Date().toLocaleString('id-ID'));
+      
+            client.writeRegister(
+              registerAddress45,
+              registerValue,
+              (writeErr, response) => {
+                if (writeErr) {
+                  console.error("Error writing register:", writeErr);
+                  res.status(500).send("Error writing Modbus register");
+                  process.exit(1)
+                } else {
+                  console.log("Write successful:", response);
+                  res.status(200).send("Write successful");
+                }            
+              }
+            );
+          });
+          // untuk 5
+          app.get("/write-modbus-register/5", (req, res) => {
+            console.log("API MC 5 Telah dipanggil");
+            console.log("API call MC 5 completed at:", new Date().toLocaleString('id-ID'));
+      
+            client.writeRegister(
+              registerAddress5,
+              registerValue,
+              (writeErr, response) => {
+                if (writeErr) {
+                  console.error("Error writing register:", writeErr);
+                  res.status(500).send("Error writing Modbus register");
+                  process.exit(1)
+                } else {
+                  console.log("Write successful:", response);
+                  res.status(200).send("Write successful");
+                }            
+              }
+            );
+          });
+          // untuk 1
+          app.get("/write-modbus-register/1", (req, res) => {
+            console.log("API MC 1 Telah dipanggil");
+            console.log("API call MC 1 completed at:", new Date().toLocaleString('id-ID'));
 
+            client.writeRegister(
+              registerAddress1,
+              registerValue,
+              (writeErr, response) => {
+                if (writeErr) {
+                  console.error("Error writing register:", writeErr);
+                  res.status(500).send("Error writing Modbus register");
+                  process.exit(1)
+                } else {
+                  console.log("Write successful:", response);
+                  res.status(200).send("Write successful");
+                }            
+              }
+            );
+          });
+
+          // untuk 43
+          app.get("/write-modbus-register/43", (req, res) => {
+            console.log("API MC 43 Telah dipanggil");
+            console.log("API call MC 43 completed at:", new Date().toLocaleString('id-ID'));
+      
+            client.writeRegister(
+              registerAddress43,
+              registerValue,
+              (writeErr, response) => {
+                if (writeErr) {
+                  console.error("Error writing register:", writeErr);
+                  res.status(500).send("Error writing Modbus register");
+                  process.exit(1)
+                } else {
+                  console.log("Write successful:", response);
+                  res.status(200).send("Write successful");
+                }            
+              }
+            );
+          });
     // Write a single register with the specified value
   
   }
