@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const Modbus = require("modbus-serial");
 const dotenv = require("dotenv");
+const axios = require('axios');
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -91,6 +92,44 @@ client.connectTCP(modbusServerIp, { port: modbusServerPort }, (err) => {
     });
   }
 });
+
+app.get("/api/querywindtask", (req, res) => {
+  try {
+    const postDataQueryWindTask = async () => {
+      try {
+        const requestBody = {
+          currentPage: 1,
+          pageSize: 5,
+          queryParam: {
+            taskRecordId: null,
+            outOrderNo: null,
+            agvId: null,
+            status: 1000,
+            taskLabel: null,
+            startDate: null,
+            endDate: null,
+            ifParentOrChildOrAll: null,
+            ifPeriodTask: 0,
+          },
+        };
+        const response = await axios.post(
+          "http://172.172.9.118:8080/api/queryWindTask", requestBody
+        )
+  
+        res.status(200).json(response.data.data)
+      } catch (error) {
+        console.error("Error posting data:", error);
+      }
+    }
+    postDataQueryWindTask()
+    
+  } catch (error) {
+    console.error("Error posting data:", error);
+    
+  }
+ 
+ 
+})
 
 app.listen(port, () => {
     console.log(`Express server running on port ${port}`);
