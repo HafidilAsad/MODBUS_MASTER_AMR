@@ -23,14 +23,14 @@ const registerAddresses = {
 // LINE 2 ================================
   20: 13,
   22: 13,
-  34: 10,
-  33: 10,
+  // 34: 10,
+  // 33: 10,
   28: 14,
   27: 14,
-  30: 11,
-  29: 11,
-  32: 15,
-  31: 15,
+  // 30: 11,
+  // 29: 11,
+  // 32: 15,
+  // 31: 15,
   24: 16,
   12: 16,
   40: 17,
@@ -132,6 +132,6 @@ app.get("/api/querywindtask", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Express server running on port ${port}`);
+    console.log(`Express server app amr  running on port ${port}`);
   });
   
